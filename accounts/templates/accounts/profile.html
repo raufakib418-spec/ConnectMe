@@ -1,0 +1,36 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Profile | ConnectMe{% endblock %}
+
+{% block content %}
+
+<h1>{{ user.username }}'s Profile</h1>
+
+{% if user.profile_picture %}
+    <img
+        src="{{ user.profile_picture.url }}"
+        alt="{{ user.username }}"
+        width="150"
+    >
+{% else %}
+    <p>No profile picture yet.</p>
+{% endif %}
+
+<p><strong>Username:</strong> {{ user.username }}</p>
+
+<p><strong>Email:</strong> {{ user.email }}</p>
+
+<p><strong>Bio:</strong></p>
+<p>{{ user.bio|default:"No bio added yet." }}</p>
+
+<p>
+    <strong>Status:</strong>
+
+    {% if user.is_online %}
+        ?? Online
+    {% else %}
+        ? Offline
+    {% endif %}
+</p>
+
+{% endblock %}
